@@ -1,4 +1,4 @@
-# Code for Plot 1
+# Code for Plot 2
 
 #Reading the txt file
 file <- read.table("household_power_consumption.txt", sep=";", header=T,na.strings = "?", nrows=  )
@@ -12,8 +12,8 @@ finalList <- a[top:bottom,]
 #Conversion of the Date and Time variables to Date/Time classes
 finalList$dateTime <- as.POSIXlt( paste( finalList$Date , finalList$Time), format = "%d/%m/%Y %H:%M:%S" )
 
-# Histogram of Global Active Power
+# Plot of Global Active Power vs dateTime
 library(datasets)
-png(file="plot1.png",width = 480, height = 480)
-hist(finalList$Global_active_power, main = "Global Active Power", col= "red", xlab = "Global Active Power (kilowatts)")
+png(file="plot2.png",width = 480, height = 480)
+with(finalList, plot(dateTime,Global_active_power, type = "l", ylab="Global Active Power (kilowatts)", xlab = ""))
 dev.off()
